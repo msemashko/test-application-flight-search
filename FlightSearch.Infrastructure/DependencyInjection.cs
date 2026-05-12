@@ -1,4 +1,6 @@
+using FlightSearch.Application.Interfaces;
 using FlightSearch.Infrastructure.Data;
+using FlightSearch.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +12,9 @@ public static class DependencyInjection
     {
         services.AddDbContext<FlightSearchDbContext>(options =>
             options.UseSqlite(connectionString));
+
+        services.AddScoped<IAirportService, AirportService>();
+        services.AddScoped<IFlightService, FlightService>();
 
         return services;
     }
