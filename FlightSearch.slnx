@@ -1,0 +1,11 @@
+<Solution>
+  <Project Path="FlightSearch.Application/FlightSearch.Application.csproj" />
+  <Project Path="flightsearch.client/flightsearch.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="FlightSearch.Domain/FlightSearch.Domain.csproj" />
+  <Project Path="FlightSearch.Infrastructure/FlightSearch.Infrastructure.csproj" />
+  <Project Path="FlightSearch.Server/FlightSearch.Server.csproj" />
+  <Project Path="FlightSearch.Tests/FlightSearch.Tests.csproj" />
+</Solution>
