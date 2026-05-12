@@ -19,12 +19,13 @@ try
 
     builder.Services.AddCors(options =>
         options.AddDefaultPolicy(policy =>
+        // In production, we would restrict this to specific origins and headers, but since this is a demo, we'll allow everything
             policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
     builder.Services.AddValidatorsFromAssemblyContaining<FlightSearchRequestValidator>();
 
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-                           ?? "Data Source=flightsearch.db";
+                           ?? throw new InvalidOperationException("Connection string 'DefaultConnection' is not configured.");
     builder.Services.AddInfrastructure(connectionString);
 
     var app = builder.Build();
