@@ -14,7 +14,18 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddValidatorsFromAssemblyContaining<FlightSearchRequestValidator>();
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+                       ?? "Data Source=flightsearch.db";
+builder.Services.AddInfrastructure(connectionString);
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<FlightSearchDbContext>();
+    await db.Database.EnsureCreatedAsync();
+    await DatabaseSeeder.SeedAsync(db);
+}
 
 app.UseDefaultFiles();
 app.MapStaticAssets();
