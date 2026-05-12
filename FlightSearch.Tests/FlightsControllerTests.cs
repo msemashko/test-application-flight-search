@@ -3,6 +3,7 @@ using FlightSearch.Application.DTOs;
 using FlightSearch.Application.Validators;
 using FlightSearch.Server.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging.Abstractions;
 using NSubstitute;
 
 namespace FlightSearch.Tests;
@@ -15,7 +16,7 @@ public class FlightsControllerTests
     public FlightsControllerTests()
     {
         var validator = new FlightSearchRequestValidator();
-        _controller = new FlightsController(_flightService, validator);
+        _controller = new FlightsController(_flightService, validator, NullLogger<FlightsController>.Instance);
     }
 
     [Fact]
