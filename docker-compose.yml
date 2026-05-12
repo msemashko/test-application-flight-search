@@ -1,0 +1,9 @@
+services:
+  flightsearch:
+    build:
+      context: .
+      dockerfile: FlightSearch.Server/Dockerfile
+    ports:
+      - "5003:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
